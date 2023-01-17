@@ -1,0 +1,34 @@
+//Easy 
+class Solution {
+    int max_gcd;
+    int res;
+    int maxGCD(Node root) {
+        // code here
+        max_gcd = 0;
+        res = 0;
+        helper(root);
+        return res;
+    }
+    int helper(Node root){
+        if(root == null)
+            return 0;
+        int left = helper(root.left);
+        int right = helper(root.right);
+        if(left != 0 && right != 0){
+            int gcd = findGCD(left,right);
+            if(gcd > max_gcd){
+                max_gcd = gcd;
+                res = root.data;
+            }
+            else if(gcd == max_gcd && root.data > res){
+                res = root.data;
+            }
+        }
+        return root.data;
+    }
+    int findGCD(int a, int b){
+        if(a == 0)
+            return b;
+        return findGCD(b % a, a);
+    }
+}
