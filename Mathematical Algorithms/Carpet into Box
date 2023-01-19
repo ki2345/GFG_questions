@@ -1,0 +1,18 @@
+class Solution{
+    public int countMoves(int A,int B,int C,int D){
+        int count = 0;
+        while(A > C){
+            A = A/2;
+            count++;
+        }
+        while(B > D){
+            B = B/2;
+            count++;
+        }
+        return count;
+    }
+    int carpetBox(int A, int B, int C, int D) { 
+        //code here
+        return Math.min(countMoves(A,B,C,D),countMoves(B,A,C,D));
+    } 
+}
