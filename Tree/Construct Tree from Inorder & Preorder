@@ -1,0 +1,28 @@
+//Medium
+class Solution
+{
+    public static Node buildTree(int inorder[], int preorder[], int n)
+    {
+        // code here 
+         return createTree(inorder,0,n-1,preorder,0,n-1);
+    }
+    public static Node createTree(int[] inorder, int i, int j, int[] preorder, int s, int e){
+        if(i > j || s > e){
+            return null;
+        }
+        Node nn = new Node(preorder[s]);
+        int idx = search(inorder,i,j,preorder[s]);
+        int net = idx - i;
+        nn.left = createTree(inorder,i,idx-1,preorder,s+1,s+net);
+        nn.right = createTree(inorder,idx+1,j,preorder,s+net+1,e);
+        return nn;
+    }
+    public static int search(int[] arr, int si, int ei, int key){
+        for(int i=si;i<=ei;i++){
+            if(arr[i] == key){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
