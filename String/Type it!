@@ -1,0 +1,16 @@
+//Easy
+class Solution {
+    int minOperation(String s) {
+        // code here
+        int ans = s.length();
+        for(int i=0;i<s.length()/2;i++) {
+            boolean flag =true;
+            for(int j=0;j<=i && flag;j++)  
+                if(s.charAt(j) != s.charAt(j+i+1))    
+                    flag = false;
+            if(flag) 
+                ans = s.length() - i;
+        }
+        return ans;
+    }
+}
