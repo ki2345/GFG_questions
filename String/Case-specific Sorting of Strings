@@ -1,0 +1,28 @@
+//Medium
+class Solution
+{
+    //Function to perform case-specific sorting of strings.
+    public static String caseSort(String str)
+    {
+        // Your code here
+        char[] ch = str.toCharArray();
+        Arrays.sort(ch);
+        int start = 0;
+        int end = 0;
+        while(start < ch.length){
+            if(ch[start] >= 'a')
+                break;
+            start++;
+        }
+        char[] res = new char[ch.length];
+        for(int i=0;i<str.length();i++){
+            if(str.charAt(i) >= 'a'){
+                res[i] = ch[start++];
+            }
+            else{
+                res[i] = ch[end++];
+            }
+        }
+        return new String(res);
+    }
+}
