@@ -1,0 +1,23 @@
+//Medium
+class Solution{
+    Node divide(int N, Node head){
+        // code here
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        Node curr = head;
+        for(int i=0;i<N;i++){
+            if(curr.data % 2 == 1){
+                temp.next = new Node(curr.data);
+                temp = temp.next;
+                curr.data = curr.next.data;
+                curr.next = curr.next.next;
+            }
+            else{
+                curr = curr.next;
+            }
+        }
+        return head;
+    }
+}
