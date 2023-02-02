@@ -1,0 +1,36 @@
+//Medium
+class Info{
+		int size = 0;
+		int max = Integer.MIN_VALUE;
+		int min = Integer.MAX_VALUE;
+		boolean isBST = true;
+	}
+class Solution{
+    
+    // Return the size of the largest sub-tree which is also a BST
+    static int largestBst(Node root)
+    {
+        // Write your code here
+        return largestBSTinBT(root).size;
+    }
+    private static Info largestBSTinBT(Node root) {
+			if(root == null){
+                return new Info();
+            }
+            Info lbp = largestBSTinBT(root.left);
+            Info rbp = largestBSTinBT(root.right);
+            Info selfbp = new Info();
+            selfbp.max = Math.max(lbp.max,Math.max(rbp.max,root.data));
+            selfbp.min = Math.min(lbp.min,Math.min(rbp.min,root.data));
+            if(lbp.isBST && rbp.isBST && lbp.max < root.data && rbp.min > root.data){
+                selfbp.isBST = true;
+                selfbp.size = lbp.size + rbp.size + 1;
+            }
+            else {
+                selfbp.isBST = false;
+                selfbp.size = Math.max(lbp.size,rbp.size);
+            }
+            return selfbp;
+		}
+    
+}
