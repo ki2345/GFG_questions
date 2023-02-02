@@ -1,0 +1,36 @@
+//Medium
+class Tree {
+    // Function to delete a node from BST.
+    public static Node deleteNode(Node root, int X) {
+        // code here.
+         if(root == null)
+            return root;
+        if(root.data < X)
+            root.right = deleteNode(root.right, X);
+        else if(root.data > X)
+            root.left = deleteNode(root.left, X);
+        else{
+            //1 or 0 child
+            if(root.left == null){
+                return root.right;
+            }
+            else if(root.right == null){
+                return root.left;
+            }
+            //2 child
+            else{
+                int min = min(root.right);
+                root.right = deleteNode(root.right,min);
+                root.data = min;
+            }
+        }
+        return root;
+    }
+    public static int min(Node root){
+        if(root == null){
+            return Integer.MAX_VALUE;
+        }
+        int left = min(root.left);
+        return Math.min(left, root.data);
+    }
+}
