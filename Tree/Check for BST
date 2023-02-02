@@ -1,0 +1,25 @@
+//Easy
+public class Solution
+{
+    //Function to check whether a Binary Tree is BST or not.
+    public boolean isBST(Node root) {
+        if(root == null){
+            return true;
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        inOrder(root,res);
+        for(int i=0;i<res.size()-1;i++){
+            if(res.get(i) >= res.get(i+1)){
+                return false;
+            }
+        }
+        return true;
+    }
+    void inOrder(Node root,ArrayList<Integer> res){
+        if(root == null)
+            return;
+        inOrder(root.left,res);
+        res.add(root.data);
+        inOrder(root.right,res);   
+    }
+}
