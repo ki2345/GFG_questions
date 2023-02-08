@@ -1,0 +1,20 @@
+//Medium
+class Solution{
+    static int minJumps(int[] arr){
+        // your code here
+        int n = arr.length;
+        int currmax = 0;
+        int nextmax = 0;
+        int no_of_jumps = 0;
+        for(int i=0;i<n-1;i++){
+            nextmax = Math.max(nextmax,i + arr[i]);
+            if(i == currmax){
+                no_of_jumps++;
+                currmax = nextmax;
+            }
+        }
+        if(currmax < n-1)
+            return -1;
+        return no_of_jumps;
+    }
+}
