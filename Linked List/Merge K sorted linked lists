@@ -1,0 +1,30 @@
+//Medium
+class Solution
+{
+    //Function to merge K sorted linked list.
+    Node mergeKList(Node[]arr,int K)
+    {
+        //Add your code here.
+         PriorityQueue<Node> pq1 = new PriorityQueue<>(new Comparator<Node>(){
+            public int compare(Node o1, Node o2){
+                return o1.data - o2.data;
+            }
+        });
+        for(int i=0;i<arr.length;i++){
+            if(arr[i] != null){
+                pq1.add(arr[i]);
+            }
+        }
+        Node dummy = new Node(0);
+        Node temp = dummy;
+        while(!pq1.isEmpty()){
+            Node rv = pq1.poll(); //rv -- remove
+            dummy.next = rv;
+            dummy = dummy.next;
+            if(rv.next != null){
+                pq1.add(rv.next);
+            }
+        }
+        return temp.next;
+    }
+}
