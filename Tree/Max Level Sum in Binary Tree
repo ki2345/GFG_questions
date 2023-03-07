@@ -1,0 +1,27 @@
+//Easy
+class Solution {
+    public int maxLevelSum(Node root) {
+        // add code here.
+        if(root == null)
+            return 0;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        int mlsum = Integer.MIN_VALUE; //lsum -- maxLevelsum
+        while(!q.isEmpty()){
+            int lsum = 0; //lsum -- levelsum
+            int size = q.size();
+            for(int i=0;i<size;i++){
+                Node curr = q.remove();
+                lsum += curr.data;
+                if(curr.left != null){
+                    q.add(curr.left);
+                }
+                if(curr.right != null){
+                    q.add(curr.right);
+                }
+            }
+            mlsum = Math.max(mlsum, lsum);
+        }
+        return mlsum;
+    }
+}
