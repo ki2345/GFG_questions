@@ -1,0 +1,23 @@
+//Easy
+class Solution {
+    public static ArrayList<Integer> getDistinctDifference(int N, int[] A) {
+        // code here
+        int[] larr = new  int[N];
+        int[] rarr = new int[N];
+        ArrayList<Integer> res = new ArrayList<>();
+        Set<Integer> lset = new HashSet<>();
+        Set<Integer> rset = new HashSet<>();
+        for(int i=0;i<N;i++){
+            larr[i] = lset.size();
+            lset.add(A[i]);
+        }
+        for(int i=N-1;i>=0;i--){
+            rarr[i] = rset.size();
+            rset.add(A[i]);
+        }
+        for(int i=0;i<N;i++){
+            res.add(larr[i] - rarr[i]);
+        }
+        return res;
+    }
+}
