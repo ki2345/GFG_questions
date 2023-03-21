@@ -1,0 +1,14 @@
+//Easy
+class Solution {
+    public static int minimumTime(int N, int cur, int[] pos, int[] time) {
+        // code here
+        int min_time = Integer.MAX_VALUE;
+        for(int i=0;i<N;i++){
+            int c = Math.abs((cur - pos[i]) * time[i]);
+            if(c < min_time){
+                min_time = c;
+            }
+        }
+        return min_time;
+    }
+}
