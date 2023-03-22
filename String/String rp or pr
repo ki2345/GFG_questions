@@ -1,0 +1,52 @@
+//Medium
+class Solution 
+{ 
+    static long solve(int X,int Y, String S)
+	{    
+	    // code here
+        long res;
+        if(X < Y){
+            res = remove(Y, X, S, 'r', 'p');
+        }
+        else{
+            res = remove(X, Y, S, 'p', 'r');
+        }
+        return res;
+	}
+	public static long remove(long X, long Y, String S, char c1, char c2){
+	    Stack<Character> st = new Stack<>();
+	    long res = 0;
+	    for(int i=0;i<S.length();i++){
+	        char c = S.charAt(i);
+	        if(c == c2){
+	            if(st.size() > 0 && st.peek() == c1){
+	                st.pop();
+	                res += X;
+	            }
+	            else{
+	                st.push(c);
+	            }
+	        }
+	        else{
+	            st.push(c);
+	        }
+	    }
+	    Stack<Character> st1 = new Stack<>();
+	    while(st.size() > 0){
+	        if(st.peek() == c2){
+	            if(st1.size() > 0 && st1.peek() == c1){
+	                res += Y;
+	                st1.pop();
+	                st.pop();
+	            }
+	            else{
+	                st1.push(st.pop());
+	            }
+	        }
+	        else{
+	            st1.push(st.pop());
+	        }
+	    }
+	    return res;
+	}
+} 
