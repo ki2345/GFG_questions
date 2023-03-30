@@ -1,0 +1,16 @@
+//Easy
+class Solution {
+    public static int minimumInteger(int N, int[] A) {
+        // code here
+        long S = 0;
+        for(int i=0;i<N;i++){
+            S += A[i];
+        }
+        int ans = Integer.MAX_VALUE;
+        for(int i=0;i<N;i++){
+            if(N * 1L * A[i] >= S)
+                ans = Math.min(ans, A[i]);
+        }
+        return ans;
+    }
+}
