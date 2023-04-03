@@ -1,0 +1,17 @@
+//Easy
+class Solution 
+{ 
+    static int xmod11(String x)
+	{    
+	    // code here
+	    int rem = 0;
+	    int i = 0;
+	    while(i < x.length()){
+	        int val = x.charAt(i) - '0';
+	        int sum = rem * 10 + val;
+	        rem = sum % 11;
+	        i++;
+	    }
+        return rem;
+	}
+} 
