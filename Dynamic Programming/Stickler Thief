@@ -1,0 +1,23 @@
+//Medium
+class Solution
+{
+    //Function to find the maximum money the thief can get.
+    static int[] dp;
+    public int FindMaxSum(int arr[], int n)
+    {
+        // Your code here
+        dp = new int[n+1];
+        Arrays.fill(dp,-1);
+        return Robber(arr,0);
+    }
+    public static int Robber(int[] arr, int i){
+        if(i >= arr.length){
+            return 0;
+        }
+        if(dp[i] != -1){
+            return dp[i];
+        }
+        dp[i] = Math.max(arr[i] + Robber(arr,i+2), Robber(arr, i+1));
+        return dp[i];
+    }
+}
