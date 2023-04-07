@@ -1,0 +1,23 @@
+//Easy
+//Basic Approach
+class Solution{
+	int equalSum(int [] A, int N) {
+		//Write your code here
+		if(N == 1)
+		    return 1;
+		int i;
+		int sum = 0;
+		for(i=0;i<N;i++){
+		    sum += A[i];  
+		}
+		int left = 0;
+		int right = sum - A[0]; 
+		for(i=1;i<N-1;i++){
+		    left += A[i-1];  
+		    right = right - A[i]; 
+         if(left == right)
+		        return i + 1;
+		}
+		return -1;
+	}
+}
