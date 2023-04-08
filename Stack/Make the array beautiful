@@ -1,0 +1,27 @@
+//Easy
+class Solution {
+    public static ArrayList<Integer> makeBeautiful(int[] arr) {
+        // code here
+        int N = arr.length;
+        Stack<Integer> st = new Stack<>();
+        for(int i=0;i<N;i++){
+            if(st.isEmpty()){
+                st.push(arr[i]);
+            }
+            else{
+                if(st.peek() >= 0 && arr[i] < 0 || st.peek() < 0 && arr[i] >= 0){
+                    st.pop();
+                }
+                else{
+                    st.push(arr[i]);
+                }
+            }
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        while(!st.isEmpty()){
+            res.add(st.pop());
+        }
+        Collections.reverse(res);
+        return res;
+    }
+}
