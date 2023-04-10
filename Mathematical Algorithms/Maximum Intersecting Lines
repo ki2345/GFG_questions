@@ -1,0 +1,30 @@
+//Medium
+class Solution {
+    public int maxIntersections(int[][] lines, int N) {
+        // Code here
+        ArrayList<Integer> firstpoint = new ArrayList<>();
+        ArrayList<Integer> secondpoint = new ArrayList<>();
+        for(int i=0;i<N;i++){
+            firstpoint.add(lines[i][0]);
+            secondpoint.add(lines[i][1]);
+        }
+        Collections.sort(firstpoint);
+        Collections.sort(secondpoint);
+        int i = 0;
+        int j = 0;
+        int max = Integer.MIN_VALUE;
+        int count = 0; //for  calculating number of intersection points
+        while(i < N && j < N){
+            if(firstpoint.get(i) <= secondpoint.get(j)){
+                i++;
+                count++;
+                max = Math.max(max, count);
+            }
+            else{
+                j++;
+                count--;
+            }
+        }
+        return max;
+    }
+}
