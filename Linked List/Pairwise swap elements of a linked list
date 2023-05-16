@@ -1,0 +1,15 @@
+//Easy
+public Node pairwiseSwap(Node head){
+        // code here
+        if(head == null || head.next == null)
+            return head;
+        Node curr = head;
+        Node ptr1 = head.next;
+        Node temp = ptr1.next;
+        curr.next = temp;
+        ptr1.next = curr;
+        if(temp != null){
+            curr.next = pairwiseSwap(temp);
+        }
+        return ptr;
+}
