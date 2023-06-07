@@ -1,0 +1,29 @@
+//Hard
+class Solution
+{
+	public int minPoints(int points[][],int M,int N) 
+	{ 
+	    // Your code goes here
+	    int[][] dp = new int[M][N];
+	    for(int[] a : dp){
+	        Arrays.fill(a, -1);
+	    }
+	    return calcMin(points, M, N, 0, 0, dp);
+	} 
+	public static int calcMin(int[][] points, int M, int N, int currrow, int currcol, int[][] dp){
+	    //corner cases
+	    if(M == currrow || N == currcol){
+	        return Integer.MAX_VALUE;
+	    }
+	    if(M-1 == currrow && N-1 == currcol){
+	        return points[currrow][currcol] > 0 ? 1 : 1 - points[currrow][currcol];
+	    }
+	    if(dp[currrow][currcol] != -1){
+	        return dp[currrow][currcol];
+	    }
+	    int right = calcMin(points, M, N, currrow, currcol+1, dp);
+	    int down = calcMin(points, M, N, currrow+1, currcol, dp);
+	    int hp = Math.min(right, down) - points[currrow][currcol];
+	    return dp[currrow][currcol] = hp > 0 ? hp : 1;
+	}
+}
