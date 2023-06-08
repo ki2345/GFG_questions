@@ -1,0 +1,32 @@
+//Hard
+class Solution {
+    public static int maxCoins(int N, int[] nums) {
+    // code here
+        int[] arr = new int[nums.length + 2];
+        arr[0] = arr[arr.length - 1] = 1;
+        for(int i=1;i<arr.length-1;i++){
+            arr[i] = nums[i - 1];
+        }
+        int[][] dp = new int[arr.length][arr.length];
+        for(int[] a : dp){
+            Arrays.fill(a, -1);
+        }
+        return Burst(arr, 0, arr.length-1, dp);
+    }
+    public static int Burst(int[] arr, int si, int ei, int[][] dp){
+        if(si + 1 == ei){
+            return 0;
+        }
+        if(dp[si][ei] != -1){
+            return dp[si][ei];
+        }
+        int ans = Integer.MIN_VALUE;
+        for(int k=si+1;k<ei;k++){
+            int left = Burst(arr, si, k, dp);
+            int right = Burst(arr, k, ei, dp);
+            int self = arr[si] * arr[k] * arr[ei];
+            ans = Math.max(ans, self + left + right);
+        }
+        return dp[si][ei] = ans;
+    }
+}
