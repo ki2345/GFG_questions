@@ -1,0 +1,16 @@
+//Easy
+class Solution {
+    static int setBits(int N) {
+        // code here
+        int count = 0;
+        int i = 0;
+        while(i < 32){
+            if((N & 1) == 1){
+                count++;
+            }
+            N = N >> 1;
+            i++;
+        }
+        return count;
+    }
+}
