@@ -1,0 +1,39 @@
+//Medium
+class Solution {
+    static List<Integer> maxCombinations(int N, int K, int A[], int B[]) {
+        // code here
+        Arrays.sort(A); //2 3
+        Arrays.sort(B); //1 4
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        //starting from 1 to 0
+        for(int i=N-1;i>N-K-1;i--){
+            for(int j=N-1;j>N-K-1;j--){
+                int sum = A[i] + B[j];
+                //pq is less than k , add sum in pq
+                if(pq.size() < K){
+                    pq.add(sum);
+                }
+                //pq is greater than k, peek element is less than sum  (4 < 6)
+                else{
+                    if(pq.peek() < sum){
+                        pq.poll();
+                        pq.add(sum);
+                    }
+                    else{
+                        break;
+                    }
+                }
+            }
+        }
+        List<Integer> res = new ArrayList<>();
+        while(!pq.isEmpty()){
+            if(res.isEmpty()){
+                res.add(pq.poll());
+            }
+            else{
+                res.add(0, pq.poll());
+            }
+        }
+        return res;
+    }
+}
