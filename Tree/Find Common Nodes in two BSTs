@@ -1,0 +1,32 @@
+//Easy
+class Solution
+{
+    //Function to find the nodes that are common in both BST.
+	public static ArrayList<Integer> findCommon(Node root1,Node root2)
+    {
+        //code here
+        HashSet<Integer> st1 = new HashSet<>();
+        HashSet<Integer> st2 = new HashSet<>();
+        ArrayList<Integer> res = new ArrayList<>();
+        //adding elements from bst1 to set1
+        inOrder(root1, st1);
+        //adding elements from bst2 to set2
+        inOrder(root2, st2);
+        for(int i : st1){
+            if(st2.contains(i)){
+                res.add(i);
+            }
+        }
+        Collections.sort(res);
+        return res;
+    }
+    public static void inOrder(Node root, HashSet<Integer> set){
+        if(root == null){
+            return;
+        }
+        inOrder(root.left, set);
+        set.add(root.data);
+        inOrder(root.right, set);
+        return;
+    }
+}
