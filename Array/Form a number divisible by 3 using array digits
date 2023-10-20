@@ -1,0 +1,16 @@
+//Easy
+class Solution {
+    static int isPossible(int N, int arr[]) {
+        // code here
+        long sum = 0;
+        int ans = 0;
+        for(long i : arr){
+            sum += i;
+        }
+        if(sum % 3 == 0){
+            ans = 1;
+            return ans;
+        }
+        return ans;
+    }
+}
