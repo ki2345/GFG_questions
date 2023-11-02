@@ -1,0 +1,30 @@
+//Easy
+class Solution {
+    int minDist(int a[], int n, int x, int y) {
+        // code here
+        int i = 0;
+        int j = 0;
+        int res = Integer.MAX_VALUE;
+        while(i < n && j < n){
+            if(a[i] == x && a[j] == y){
+                res = Math.min(Math.abs(i-j), res);
+                if(j > i){
+                    i++;
+                }
+                else{
+                    j++;
+                }
+            }
+            else if(a[i] == x && a[j] != y){
+                j++;
+            }
+            else{
+                i++;
+            }
+        }
+        if(res == Integer.MAX_VALUE){
+            return -1;
+        }
+        return res;
+    }
+}
