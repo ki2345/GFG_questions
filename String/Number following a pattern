@@ -1,0 +1,23 @@
+//Medium
+class Solution{
+    static String printMinNumberForPattern(String S){
+        // code here
+        String res = "";
+        Stack<Integer> st = new Stack<>();
+        int num = 1;
+        for(int i=0;i<S.length();i++){
+            st.push(num);// S.charAt(i) == 'D'
+            num++;
+            if(S.charAt(i) == 'I'){
+                while(!st.isEmpty()){
+                    res += Integer.toString(st.pop());
+                }
+            }
+        }
+        st.push(num);
+        while(!st.isEmpty()){
+            res += Integer.toString(st.pop());
+        }
+        return res;
+    }
+}
