@@ -1,0 +1,27 @@
+//Medium
+class Solution
+{
+    //Function to find length of shortest common supersequence of two strings.
+    public static int shortestCommonSupersequence(String X,String Y,int m,int n)
+    {
+        //Your code here
+        int i = 0;
+        int j = 0;
+        int dp[][] = new int[m+1][n+1];
+        for(i=1;i<=m;i++)
+        {
+            for(j=1;j<=n;j++)
+            {
+                if(X.charAt(i-1)==Y.charAt(j-1))
+                {
+                    dp[i][j]=dp[i-1][j-1]+1;
+                }
+                else{
+                    dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+                }
+            }
+        }
+        //sum of length of both string minus length of LCS
+        return m + n - dp[m][n];
+    }
+}
