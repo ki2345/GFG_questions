@@ -1,0 +1,31 @@
+//Easy
+class Solution
+{
+    static void inorder(Node root1, ArrayList<Integer> al){
+        if(root1 == null) 
+            return;
+        inorder(root1.left, al);
+        al.add(root1.data);
+        inorder(root1.right, al);
+    }
+    static void mapping(Node root2, HashSet<Integer> st){
+        if(root2 == null) 
+            return;
+        mapping(root2.left, st);
+        st.add(root2.data);
+        mapping(root2.right, st);
+    }
+    public static int countPairs(Node root1, Node root2, int x)
+    {
+        int count = 0;
+        ArrayList<Integer> al = new ArrayList<>();
+        HashSet<Integer> set = new HashSet<>();
+        inorder(root1, al);
+        mapping(root2, set);
+        for(int i=0;i<al.size();i++){
+            if(set.contains(x - al.get(i)))
+            count++;
+        }
+        return count;
+    }
+}
