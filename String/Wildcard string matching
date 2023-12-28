@@ -1,0 +1,21 @@
+//Hard
+//Recursion
+class Solution{
+    static boolean match(String wild, String pattern){
+        return solve(wild, pattern, 0, 0);
+    }
+    private static boolean solve(String wild, String pattern, int i, int j){
+        if(i == wild.length() && j == pattern.length()){
+            return true;
+        }
+        if(i == wild.length() || j == pattern.length())
+            return false;
+        if(wild.charAt(i) == '*'){
+            return solve(wild, pattern, i, j+1) || solve(wild, pattern, i+1, j+1) || solve(wild, pattern, i+1, j);
+        }
+        else if(wild.charAt(i) == '?' || wild.charAt(i) == pattern.charAt(j)){
+            return solve(wild, pattern, i+1, j+1);
+        }
+        return false;
+    }
+}
