@@ -1,0 +1,19 @@
+//Medium
+class Solution
+{
+    int kSubstrConcat(int n, String s, int k)
+    {
+        // Your Code Here   
+        if(n % k != 0){
+            return 0;
+        }
+        HashSet<String> set = new HashSet<>();
+        for(int i=0;i<n;i+=k){
+            set.add(s.substring(i, i+k));
+        }
+        if(set.size() <= 2){
+            return 1;
+        }
+        return 0;
+    }
+}
