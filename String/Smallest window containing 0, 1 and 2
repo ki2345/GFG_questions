@@ -1,0 +1,24 @@
+//Easy
+class Solution {
+    public int smallestSubstring(String S) {
+        // Code here
+        int ans = Integer.MAX_VALUE;
+        int j = 0;
+        int cnt = 0;
+        int[] arr = new int[3];
+        Arrays.fill(arr, 0);
+        for(int i=0;i<S.length();i++){
+            arr[S.charAt(i) - '0']++;
+            if(arr[S.charAt(i) - '0'] == 1)
+                cnt++;
+            if(cnt == 3){
+                while(j < i && arr[S.charAt(j) - '0'] > 1){
+                    arr[S.charAt(j) - '0']--;
+                    j++;
+                }
+                ans = Math.min(ans, i-j+1);
+            }
+        }
+        return ans != Integer.MAX_VALUE ? ans : -1;
+    }
+}
