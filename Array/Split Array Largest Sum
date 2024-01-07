@@ -1,0 +1,40 @@
+//Hard
+class Solution {
+    static int splitArray(int[] arr , int N, int K) {
+        // code here
+        int tsum = 0;
+        int max = Integer.MIN_VALUE;
+        for(int ele : arr){
+            tsum += ele;
+            max = Math.max(max, ele);
+        }
+        int low = max;
+        int high = tsum;
+        int ans = Integer.MAX_VALUE;
+        while(low <= high){
+            int mid = low + (high - low) / 2;
+            if(canDivide(arr, mid, K)){
+                ans = Math.min(ans, mid);
+                high = mid - 1;
+            }
+            else{
+                low = mid + 1;
+            }
+        }
+        return ans;
+    }
+    public static boolean canDivide(int[] arr, int mid, int k){
+        int sum = 0;
+        int count = 1;
+        for(int a : arr){
+            if(sum + a <= mid){
+                sum += a;
+            }
+            else{
+                sum = a;
+                count++;
+            }
+        }
+        return count <= k;
+    }
+};
