@@ -1,0 +1,19 @@
+//Medium
+class Solution
+{
+    static int majorityElement(int a[], int size)
+    {
+        // your code here
+        HashMap<Integer, Integer> mp = new HashMap<>();
+        for(int i=0;i<size;i++){
+            mp.put(a[i], mp.getOrDefault(a[i], 0) + 1);
+        }
+        int ele = -1;
+        for(int j=0;j<size;j++){
+            if(mp.get(a[j]) > size/2){
+                ele = a[j];
+            }
+        }
+        return ele;
+    }
+}
