@@ -1,0 +1,28 @@
+//Medium
+class Solution{
+    int longSubarrWthSumDivByK(int a[], int n, int k)
+    {
+        // Complete the function
+       Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, -1); 
+        int currsum = 0;
+        int maxlen = 0;
+        for(int i=0;i<n;i++){
+            currsum += a[i];
+            int rem = currsum % k;
+
+            if(rem < 0){
+                rem += k;  
+            }
+
+            if(map.containsKey(rem)){
+                maxlen = Math.max(maxlen, i - map.get(rem));
+            }
+
+            if(!map.containsKey(rem)){
+                map.put(rem, i);
+            }
+        }
+        return maxlen;
+    }
+}
