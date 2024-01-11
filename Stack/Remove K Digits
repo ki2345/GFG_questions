@@ -1,0 +1,34 @@
+//Medium
+// traverse the string and check if the st.peek() is greater than the curr char of the string , then pop, else push
+  class Solution {
+    public String removeKdigits(String S, int K) {
+        // code here
+        if(S.length() == K){
+            return "0";
+        }
+        Stack<Character> st = new Stack<>();
+        int i = 0;
+        while(i < S.length()){
+            while(K > 0 && !st.isEmpty() && st.peek() > S.charAt(i)){
+                st.pop();
+                K--;
+            }
+            st.push(S.charAt(i));
+            i++;
+        }
+        //if st.peek() is less than the curr char , then we will pop out the remaining k digits
+        while(K-- > 0){
+            st.pop();
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+        sb = sb.reverse();
+        //for leading zeroes
+        while(sb.length() > 1 && sb.charAt(0) == '0'){
+            sb.deleteCharAt(0);
+        }
+        return sb.toString();
+    }
+}
