@@ -1,0 +1,25 @@
+//Medium
+class Solution {
+    public int max_courses(int n, int total, int[] cost) {
+        // code here
+        int[][] dp = new int[n][total + 1];
+        for(int[] a : dp){
+            Arrays.fill(a, -1);
+        }
+        return solve(cost, 0, total, dp);
+    }
+    public int solve(int[] cost, int i, int total, int[][] dp){
+        if(i == cost.length || total <= 0){
+            return 0;
+        }
+        if(dp[i][total] != -1){
+            return dp[i][total];
+        }
+        int notake = solve(cost, i+1, total, dp);
+        int take = 0;
+        if(total >= cost[i]){
+            take = 1 + solve(cost, i+1, total - cost[i] + (int)Math.floor(cost[i] * 0.9), dp);
+        }
+        return dp[i][total] = Math.max(take, notake);
+    }
+}
