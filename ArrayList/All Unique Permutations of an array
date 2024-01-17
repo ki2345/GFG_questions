@@ -1,0 +1,35 @@
+//Medium
+class Solution {
+    static ArrayList<ArrayList<Integer>> uniquePerms(ArrayList<Integer> arr , int n) {
+        // code here
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        //for prevention of duplicates
+        Set<ArrayList<Integer>> hst = new HashSet<>();
+        //for each current permutation
+        ArrayList<Integer> al = new ArrayList<>();
+        //store boolean values for index of each element if it is visited or not
+        boolean[] vis = new boolean[n];
+        Collections.sort(arr);
+        solve(res, hst, al, vis, arr);
+        return res;
+    }
+    static void solve(ArrayList<ArrayList<Integer>> res, Set<ArrayList<Integer>> hst, ArrayList<Integer> al, boolean[] vis, ArrayList<Integer> arr){
+        if(al.size() == arr.size()){
+            if(!hst.contains(al)){
+                hst.add(new ArrayList<>(al));
+                res.add(new ArrayList<>(al));
+            }
+            return;
+        }
+        for(int i=0;i<arr.size();i++){
+            if(vis[i] == true){
+                continue;
+            }
+            vis[i] = true;
+            al.add(arr.get(i));
+            solve(res, hst, al, vis, arr);
+            vis[i] = false;
+            al.remove(al.size()-1);
+        }
+    }
+};
