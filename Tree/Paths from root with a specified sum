@@ -1,0 +1,24 @@
+//Medium
+class Solution
+{
+    public ArrayList<ArrayList<Integer>> printPaths(Node root, int sum){
+        // code here
+        ArrayList<ArrayList<Integer>> res = new ArrayList<>();
+        ArrayList<Integer> curr = new ArrayList<>();
+        dfs(root, sum, 0, curr, res);
+        return res;
+    }
+    public void dfs(Node node, int sum, int currsum, ArrayList<Integer> curr, ArrayList<ArrayList<Integer>> res){
+        if(node == null){
+            return;
+        }
+        currsum += node.data;
+        curr.add(node.data);
+        if(sum == currsum){
+            res.add(new ArrayList<>(curr));
+        }
+        dfs(node.left, sum, currsum, curr, res);
+        dfs(node.right, sum, currsum, curr, res);
+        curr.remove(curr.size() - 1);
+    }
+}
