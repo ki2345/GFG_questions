@@ -1,0 +1,28 @@
+//Medium
+class Solution
+{
+    public int solve(String str, int ind, int sum,int dp[][]){
+        
+        if(ind == str.length())
+            return dp[ind][sum] = 1;
+        if(dp[ind][sum] != -1)
+            return dp[ind][sum];
+        int currsum = 0;
+        int count = 0;
+        for(int i=ind;i<str.length();i++){
+            currsum += str.charAt(i) - '0';
+            if(currsum >= sum){
+                count += solve(str, i+1, currsum, dp);
+            }
+        }
+        return dp[ind][sum] = count;
+    }
+    public int TotalCount(String str){
+        int size = 9 * str.length();
+        int dp[][] = new int[str.length()+1][size+1];
+        for(int a[] : dp){
+            Arrays.fill(a, -1);
+        }
+        return solve(str, 0, 0, dp);
+    }
+}
