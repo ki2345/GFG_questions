@@ -1,0 +1,36 @@
+//Medium
+//Bottom-Up Approach
+class Solution {
+    public List<Integer> LargestSubset(int N, int[] arr) {
+        // Code here
+        List<Integer> res = new ArrayList<>();
+        Arrays.sort(arr);
+        //for storing the count of subsets 
+        int[] dp = new int[N];
+        Arrays.fill(dp, 1);
+        //for storing the previous index to which the condition satisfies
+        int[] prev_idx = new int[N];
+        Arrays.fill(prev_idx, -1);
+        int lastchosen_idx = 0;
+        int maxlen = 1;
+        for(int i=1;i<N;i++){
+            for(int j=0;j<i;j++){
+                if(arr[i] % arr[j] == 0){
+                    if(dp[i] < dp[j] + 1){
+                        dp[i] = dp[j] + 1;
+                        prev_idx[i] = j;
+                    }
+                    if(dp[i] > maxlen){
+                        maxlen = dp[i];
+                        lastchosen_idx = i;
+                    }
+                }
+            }
+        }
+        while(lastchosen_idx != -1){
+            res.add(arr[lastchosen_idx]);
+            lastchosen_idx = prev_idx[lastchosen_idx];
+        }
+        return res;
+    }
+}
