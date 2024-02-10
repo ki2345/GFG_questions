@@ -1,0 +1,38 @@
+//Medium
+class Solution {
+    long numberOfPath(int n, int k, int [][]arr) {
+        // code here
+        long[][][] dp = new long[n][n][k+1];
+        for(long[][] a : dp){
+            for(long[] b: a){
+                Arrays.fill(b, -1);
+            }
+        }
+        return solve(n, k, arr, 0, 0, dp);
+    }
+    long solve(int n, int k, int[][] arr, int row, int col, long[][][] dp){
+        if(k < 0){
+            return 0;
+        }
+        if(row == n-1 && col == n-1){
+            if(k == arr[row][col]){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+        }
+        if(dp[row][col][k] != -1){
+            return dp[row][col][k];
+        }
+        long right = 0;
+        long down = 0;
+        if(col + 1 < n){
+            right = solve(n, k-arr[row][col], arr, row, col+1, dp);
+        }
+        if(row + 1 < n){
+            down = solve(n, k-arr[row][col], arr, row+1, col, dp);
+        }
+        return dp[row][col][k] = right + down;
+    }
+}
