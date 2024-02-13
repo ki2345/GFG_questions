@@ -1,0 +1,20 @@
+//Easy
+class Solution{
+    static ArrayList<Integer> recamanSequence(int n){
+        ArrayList<Integer> al = new ArrayList<>();
+        al.add(0);
+        int curr = 0;
+        Set<Integer> set = new HashSet<>();
+        set.add(0);
+        for(int i=1;i<n;i++){
+            int c = curr - i;
+            if(c < 0 || set.contains(c)){
+                c = curr + i;
+            }
+            al.add(c);
+            set.add(c);
+            curr = c;
+        }
+        return al;
+    }
+}
