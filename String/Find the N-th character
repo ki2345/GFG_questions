@@ -1,0 +1,25 @@
+//Medium
+class Solution
+{
+    public char nthCharacter(String s, int r, int n)
+    {
+        //code here
+        String res = "";
+        for(int i=0;i<r;i++){
+            for(int j=0;j<s.length();j++){
+                if(s.charAt(j) == '1'){
+                    res += "10";
+                }
+                else{
+                    res += "01";
+                }
+                if(res.length() > s.length()){
+                    break;
+                }
+            }
+            s = res;
+            res = "";
+        }
+        return s.charAt(n);
+    }
+}
