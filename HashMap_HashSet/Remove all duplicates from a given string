@@ -1,0 +1,14 @@
+//Easy
+class Solution {
+    String removeDuplicates(String str) {
+       Set<Character> seen = new HashSet<>();
+       StringBuilder res = new StringBuilder();
+        for(char ch : str.toCharArray()){
+            if(!seen.contains(ch)){
+                res.append(ch);
+                seen.add(ch);
+            }
+        }
+        return res.toString();
+    }
+}
