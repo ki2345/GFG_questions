@@ -1,0 +1,10 @@
+//Easy
+class Solution {
+    public Stack<Integer> insertAtBottom(Stack<Integer> st, int x) {
+        Stack<Integer> st1 = new Stack<>();
+        st1.push(x);
+        for(int ele : st)
+            st1.push(ele);
+        return st1;
+    }
+}
